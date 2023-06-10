@@ -16,28 +16,28 @@ int main(){
 
 	while(opcao != '0'){
 		imprimirMenu();
-		printf("Escolha a opÁ„o desejada: ");
+		printf("Escolha a op√ß√£o desejada: ");
 		scanf("%d", &opcao);
 		fflush(stdin);
 		system("cls");
 		printf("\n");
 		switch (opcao){
-			case 1: //De bin·rio para decimal
+			case 1: //De bin√°rio para decimal
 				printf("----------------------------------------------\n");
-				printf("\t     BIN¡RIO PARA DECIMAL\n");
+				printf("\t     BIN√ÅRIO PARA DECIMAL\n");
 				printf("----------------------------------------------\n");
 				opcao1();
 				break;
-			case 2: //De bin·rio para hexadecimal	
+			case 2: //De bin√°rio para hexadecimal	
 				printf("----------------------------------------------\n");
-				printf("\t    BIN¡RIO PARA HEXADECIMAL\n");
+				printf("\t    BIN√ÅRIO PARA HEXADECIMAL\n");
 				printf("----------------------------------------------\n");
 				opcao2();
 				break;
 				
-			case 3: //Decimal para bin·rio
+			case 3: //Decimal para bin√°rio
 				printf("\n----------------------------------------------\n");
-				printf("\t    DECIMAL PARA BIN¡RIO\n");
+				printf("\t    DECIMAL PARA BIN√ÅRIO\n");
 				printf("----------------------------------------------\n");
 				opcao3();
 				break;
@@ -49,9 +49,9 @@ int main(){
 				opcao4();
 				break;
 				
-			case 5: // Hexadecimal pra bin·rio
+			case 5: // Hexadecimal pra bin√°rio
 				printf("----------------------------------------------\n");
-				printf("\t    HEXADECIMAL PARA BIN¡RIO\n");
+				printf("\t    HEXADECIMAL PARA BIN√ÅRIO\n");
 				printf("----------------------------------------------\n");
 				opcao5();
 				break;
@@ -69,7 +69,7 @@ int main(){
 				break;
 				
 			default:
-				printf("ERRO!\nDigite apenas n˙meros de 0 a 7!");
+				printf("ERRO!\nDigite apenas n√∫meros de 0 a 7!");
 				break;
 		}
 		printf("\n");
@@ -78,10 +78,10 @@ int main(){
 	}
 }
 
-void opcao1(){ //Bin·rio para decimal
+void opcao1(){ //Bin√°rio para decimal
 	
 	char numero[50];
-		printf("Digite o n˙mero bin·rio: ");
+		printf("Digite o n√∫mero bin√°rio: ");
 		scanf("%s", &numero);
 		fflush(stdin);
 		
@@ -90,12 +90,12 @@ void opcao1(){ //Bin·rio para decimal
 		printf("\n----------------------------------------------\n");			
 }
 
-void opcao2(){ //Bin·rio para hexadecimal 
+void opcao2(){ //Bin√°rio para hexadecimal 
 
 	char numero[50]; 
 	int decimal;
 	
-		printf("Digite o n˙mero bin·rio: ");
+		printf("Digite o n√∫mero bin√°rio: ");
 		scanf("%s", &numero);
 		fflush(stdin);
 		
@@ -107,18 +107,18 @@ void opcao2(){ //Bin·rio para hexadecimal
 		printf("\n----------------------------------------------\n");	
 }
 
-void opcao3(){ //Decimal para bin·rio
+void opcao3(){ //Decimal para bin√°rio
 	
 	int decimal;
 	
-		printf("Digite um n˙mero decimal: ");
+		printf("Digite um n√∫mero decimal: ");
 		scanf("%d", &decimal);
 		fflush(stdin);
 		
 		printf("\nDecimal: %d", decimal);
 		
 		if(decimal == 0){
-			printf("\nBin·rio: 0");
+			printf("\nBin√°rio: 0");
 		}else{
 			decimalBin(decimal);		
 		}
@@ -130,7 +130,7 @@ void opcao4(){ //Decimal para hexadecimal
 	
 	int decimal; 
 	
-		printf("Digite um n˙mero decimal: ");
+		printf("Digite um n√∫mero decimal: ");
 		scanf("%d", &decimal);
 		fflush(stdin);
 		
@@ -145,12 +145,12 @@ void opcao4(){ //Decimal para hexadecimal
 		printf("\n----------------------------------------------\n");	
 }
 
-void opcao5(){ // Hexadecimal para bin·rio
+void opcao5(){ // Hexadecimal para bin√°rio
 	
 	char hexadecimal[50];
 	int decimal;
 	
-	printf("Digite um n˙mero hexadecimal: ");
+	printf("Digite um n√∫mero hexadecimal: ");
 	scanf("%s", &hexadecimal);	
 	
 	decimal = hexadecimalDec(hexadecimal);
@@ -166,7 +166,7 @@ void opcao6(){ //Hexadecimal para decimal
 	char hexadecimal[50];
 	int decimal;
 	
-	printf("Digite um n˙mero hexadecimal: ");
+	printf("Digite um n√∫mero hexadecimal: ");
 	scanf("%s", &hexadecimal);	
 	
 	decimal = hexadecimalDec(hexadecimal);
@@ -181,11 +181,11 @@ void imprimirMenu(){
 	printf("----------------------------------------------\n");
 	printf("                     MENU                     \n");
 	printf("----------------------------------------------\n");
-	printf("1 - Bin·rio para decimal\n");
-	printf("2 - Bin·rio para hexadecimal\n");
-	printf("3 - Decimal para bin·rio\n");
+	printf("1 - Bin√°rio para decimal\n");
+	printf("2 - Bin√°rio para hexadecimal\n");
+	printf("3 - Decimal para bin√°rio\n");
 	printf("4 - Decimal para hexadecimal\n");
-	printf("5 - Hexadecimal pra bin·rio\n");
+	printf("5 - Hexadecimal pra bin√°rio\n");
 	printf("6 - Hexadecimal para decimal\n");
 	printf("0 - Sair\n");
 	printf("----------------------------------------------\n");
@@ -206,7 +206,7 @@ int binarioDec(char num[]){
 	}
 	
 	if(!errou){
-		printf("\nBin·rio: ");
+		printf("\nBin√°rio: ");
 		for(i = 0; i < qtd; i++){
 			printf("%c", num[i]);
 		}
@@ -221,7 +221,7 @@ int binarioDec(char num[]){
 	}
 
 	if(errou == true){
-		printf("\nN˙mero bin·rio È composto de 0 e 1!\nTente novamente!");
+		printf("\nN√∫mero bin√°rio √© composto de 0 e 1!\nTente novamente!");
 	}else{	
 		for(i = qtd - 1; i >= 0; i--){	
 			binario[i] = pow(2, j);
@@ -247,7 +247,7 @@ void decimalBin(int dec){
 	}
 	
 		
-	printf("\nBin·rio: ");
+	printf("\nBin√°rio: ");
 	for(i = contador - 1; i >= 0; i--){
 		printf("%d", binario[i]);
 	}
