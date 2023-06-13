@@ -12,65 +12,70 @@ int main(){
 
 	setlocale(LC_ALL, "Portuguese");
 
-	int opcao;
+	int opcao, retorno = -1;
 
-	while(opcao != '0'){
+	while(opcao != 0){
 		imprimirMenu();
 		printf("Escolha a opção desejada: ");
-		scanf("%d", &opcao);
+		retorno = scanf("%d", &opcao);
 		fflush(stdin);
-		system("cls");
-		printf("\n");
-		switch (opcao){
-			case 1: //De binário para decimal
-				printf("----------------------------------------------\n");
-				printf("\t     BINÁRIO PARA DECIMAL\n");
-				printf("----------------------------------------------\n");
-				opcao1();
-				break;
-			case 2: //De binário para hexadecimal	
-				printf("----------------------------------------------\n");
-				printf("\t   BINÁRIO PARA HEXADECIMAL\n");
-				printf("----------------------------------------------\n");
-				opcao2();
-				break;
-				
-			case 3: //Decimal para binário
-				printf("\n----------------------------------------------\n");
-				printf("\t    DECIMAL PARA BINÁRIO\n");
-				printf("----------------------------------------------\n");
-				opcao3();
-				break;
-				
-			case 4: //Decimal para hexadecimal
-				printf("----------------------------------------------\n");
-				printf("\t   DECIMAL PARA HEXADECIMAL\n");
-				printf("----------------------------------------------\n");
-				opcao4();
-				break;
-				
-			case 5: // Hexadecimal pra binário
-				printf("----------------------------------------------\n");
-				printf("\t   HEXADECIMAL PARA DECIMAL\n");
-				printf("----------------------------------------------\n");
-				opcao5();
-				break;
-				
-			case 6: //Hexadecimal para decimal
-				printf("----------------------------------------------\n");
-				printf("\t    HEXADECIMAL PARA BINÁRIO\n");
-				printf("----------------------------------------------\n");
-				opcao6();
-				break;
-				
-			case 0:
-				printf("Encerrando...");
-				abort();
-				break;
-				
-			default:
-				printf("ERRO!\nDigite apenas números de 0 a 7!");
-				break;
+		if(retorno == 0){
+			system("cls");
+			printf("ERRO!\nDigite apenas números de 0 a 7");
+		}else{
+			system("cls");
+			printf("\n");
+			switch (opcao){
+				case 1: //De binário para decimal
+					printf("----------------------------------------------\n");
+					printf("\t     BINÁRIO PARA DECIMAL\n");
+					printf("----------------------------------------------\n");
+					opcao1();
+					break;
+				case 2: //De binário para hexadecimal	
+					printf("----------------------------------------------\n");
+					printf("\t   BINÁRIO PARA HEXADECIMAL\n");
+					printf("----------------------------------------------\n");
+					opcao2();
+					break;
+					
+				case 3: //Decimal para binário
+					printf("\n----------------------------------------------\n");
+					printf("\t    DECIMAL PARA BINÁRIO\n");
+					printf("----------------------------------------------\n");
+					opcao3();
+					break;
+					
+				case 4: //Decimal para hexadecimal
+					printf("----------------------------------------------\n");
+					printf("\t   DECIMAL PARA HEXADECIMAL\n");
+					printf("----------------------------------------------\n");
+					opcao4();
+					break;
+					
+				case 5: // Hexadecimal pra binário
+					printf("----------------------------------------------\n");
+					printf("\t   HEXADECIMAL PARA DECIMAL\n");
+					printf("----------------------------------------------\n");
+					opcao5();
+					break;
+					
+				case 6: //Hexadecimal para decimal
+					printf("----------------------------------------------\n");
+					printf("\t    HEXADECIMAL PARA BINÁRIO\n");
+					printf("----------------------------------------------\n");
+					opcao6();
+					break;
+					
+				case 0:
+					printf("Encerrando...");
+					abort();
+					break;
+					
+				default:
+					printf("ERRO!\nDigite apenas números de 0 a 6!");
+					break;
+			}
 		}
 		printf("\n");
 		system("pause");
@@ -82,15 +87,16 @@ void opcao1(){ //Binário para decimal
 	
 	char numero[50];
 	int decimal; 
-	
+
 	printf("Digite o número binário: ");
 	scanf("%s", &numero);
 	fflush(stdin);
 	
 	decimal = binarioDec(numero);
-	
-	printf("\nDecimal: %d", decimal);
-	
+	if(decimal != NULL){
+		printf("\nDecimal: %d", decimal);	
+	}
+
 	printf("\n----------------------------------------------\n");			
 }
 
@@ -113,18 +119,22 @@ void opcao2(){ //Binário para hexadecimal
 
 void opcao3(){ //Decimal para binário
 	
-	int decimal;
+	int decimal, retorno = -1;
 	
 	printf("Digite um número decimal: ");
-	scanf("%d", &decimal);
+	retorno = scanf("%d", &decimal);
 	fflush(stdin);
 	
-	printf("\nDecimal: %d", decimal);
-	
-	if(decimal == 0){
-		printf("\nBinário: 0");
+	if(retorno == 0){
+		printf("\nAtenção! Digite apenas números!\nTente novamente!");
 	}else{
-		decimalBin(decimal);		
+		printf("\nDecimal: %d", decimal);
+		
+		if(decimal == 0){
+			printf("\nBinário: 0");
+		}else{
+			decimalBin(decimal);		
+		}
 	}
 
 	printf("\n----------------------------------------------\n");
@@ -132,18 +142,22 @@ void opcao3(){ //Decimal para binário
 
 void opcao4(){ //Decimal para hexadecimal
 	
-	int decimal; 
+	int decimal, retorno = -1; 
 	
 	printf("Digite um número decimal: ");
-	scanf("%d", &decimal);
+	retorno = scanf("%d", &decimal);
 	fflush(stdin);
 	
-	printf("\nDecimal: %d", decimal);
-	
-	if(decimal == 0){
-		printf("\nHexadecimal: 0");
+	if(retorno == 0){
+		printf("\nAtenção! Digite apenas números!\nTente novamente!");
 	}else{
-		decimalHex(decimal);
+		printf("\nDecimal: %d", decimal);
+		
+		if(decimal == 0){
+			printf("\nHexadecimal: 0");
+		}else{
+			decimalHex(decimal);
+		}
 	}
 	
 	printf("\n----------------------------------------------\n");	
@@ -159,7 +173,10 @@ void opcao5(){ // Hexadecimal para binário
 	
 	decimal = hexadecimalDec(hexadecimal);
 	
-	printf("\nDecimal: %d", decimal);
+	if(decimal != NULL){
+		printf("\nDecimal: %d", decimal);
+	}
+	
 	printf("\n----------------------------------------------\n");
 }
 
@@ -176,6 +193,7 @@ void opcao6(){ //Hexadecimal para decimal
 	if(decimal != NULL){
 		decimalBin(decimal);
 	}
+	
 	printf("\n----------------------------------------------\n");
     
 }
@@ -241,7 +259,7 @@ int binarioDec(char num[]){
 void decimalBin(int dec){
 	
 	int contador = 0, i = 0, binario[50];
-		
+	
 	while(dec > 0){
 			contador++;
 			binario[i] = dec % 2;
@@ -282,13 +300,14 @@ void decimalHex(int dec){
 int hexadecimalDec(char hexadecimal[]){
 	
 	int decimal = 0, i = 0, j = 0, qtd, resp, numero;
+	bool errou = false;
 	
 	qtd = strlen(hexadecimal);
 
 	for(i = 0; i < qtd; i++){
 		hexadecimal[i] = toupper(hexadecimal[i]);
 	}
-	printf("\nHexadecimal: %s", hexadecimal);
+	
 	for(i = 0; i <= qtd - 1; i++){
 		if(hexadecimal[i] == 'A'){
 			resp = 10 * (pow(16, qtd - 1 - i));
@@ -314,31 +333,20 @@ int hexadecimalDec(char hexadecimal[]){
 			resp = 15 * (pow(16, qtd - 1 - i));
 			decimal += resp;		
 			
-		}else if(hexadecimal[i] < '10'){
-			if(hexadecimal[i] == 48){
-				numero = 0;
-			}else if(hexadecimal[i] == 49){
-				numero = 1;
-			}else if(hexadecimal[i] == 50){
-				numero = 2;
-			}else if(hexadecimal[i] == 51){
-				numero = 3;
-			}else if(hexadecimal[i] == 52){
-				numero = 4;
-			}else if(hexadecimal[i] == 53){
-				numero = 5;
-			}else if(hexadecimal[i] == 54){
-				numero = 6;
-			}else if(hexadecimal[i] == 55){
-				numero = 7;
-			}else if(hexadecimal[i] == 56){
-				numero = 8;
-			}else if(hexadecimal[i] == 57){
-				numero = 9;
-			}
+		}else if(hexadecimal[i] > 47 and hexadecimal[i] < 58){
+			numero = hexadecimal[i] - 48;
 			resp = numero * pow(16, qtd - 1 - i);
 			decimal += resp;
+		}else{
+			errou = true;
 		}
 	}
-	return decimal;
+	
+	if(errou){
+		printf("\nDigite números de 1 a 9 e letras de A até F!\nTente novamente!!");
+		decimal = NULL;
+	}else{
+		printf("\nHexadecimal: %s", hexadecimal);
+	}
+		return decimal;
 }
