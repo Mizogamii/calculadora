@@ -21,7 +21,7 @@ int main(){
 		fflush(stdin);
 		if(retorno == 0){
 			system("cls");
-			printf("ERRO!\nDigite apenas números de 0 a 7");
+			printf("ERRO!\nDigite apenas números de 0 a 6");
 		}else{
 			system("cls");
 			printf("\n");
