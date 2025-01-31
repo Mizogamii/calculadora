@@ -4,6 +4,7 @@
 #include <string.h>
 #include <math.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 void opcao1(), opcao2(), opcao3(), opcao4(), opcao5(), opcao6(), imprimirMenu(), decimalBin(int dec), decimalHex(int dec);
 int binarioDec(char num[]), hexadecimalDec(char hexadecimal[]);
@@ -12,13 +13,13 @@ int main(){
 
 	setlocale(LC_ALL, "Portuguese");
 
-	int opcao, retorno = -1;
+	int opcao = -1, retorno;
 
-	while(opcao != 0){
+	do{
 		imprimirMenu();
 		printf("Escolha a opção desejada: ");
 		retorno = scanf("%d", &opcao);
-		fflush(stdin);
+		while (getchar() != '\n');
 		if(retorno == 0){
 			system("cls");
 			printf("ERRO!\nDigite apenas números de 0 a 6");
@@ -80,7 +81,7 @@ int main(){
 		printf("\n");
 		system("pause");
 		system("cls");
-	}
+	}while(opcao != 0);
 }
 
 void opcao1(){ //Binário para decimal
@@ -90,10 +91,11 @@ void opcao1(){ //Binário para decimal
 
 	printf("Digite o número binário: ");
 	scanf("%s", &numero);
-	fflush(stdin);
+	while (getchar() != '\n');
+
 	
 	decimal = binarioDec(numero);
-	if(decimal != NULL){
+	if(decimal != -1){
 		printf("\nDecimal: %d", decimal);	
 	}
 
@@ -107,10 +109,10 @@ void opcao2(){ //Binário para hexadecimal
 	
 	printf("Digite o número binário: ");
 	scanf("%s", &numero);
-	fflush(stdin);
-	
+    while (getchar() != '\n');
+    
 	decimal = binarioDec(numero);
-	if(decimal != NULL){
+	if(decimal != -1){
 		decimalHex(decimal);
 	}
 	
@@ -123,7 +125,7 @@ void opcao3(){ //Decimal para binário
 	
 	printf("Digite um número decimal: ");
 	retorno = scanf("%d", &decimal);
-	fflush(stdin);
+    while (getchar() != '\n');
 	
 	if(retorno == 0){
 		printf("\nAtenção! Digite apenas números!\nTente novamente!");
@@ -146,7 +148,7 @@ void opcao4(){ //Decimal para hexadecimal
 	
 	printf("Digite um número decimal: ");
 	retorno = scanf("%d", &decimal);
-	fflush(stdin);
+    while (getchar() != '\n');
 	
 	if(retorno == 0){
 		printf("\nAtenção! Digite apenas números!\nTente novamente!");
@@ -169,11 +171,13 @@ void opcao5(){ // Hexadecimal para binário
 	int decimal;
 	
 	printf("Digite um número hexadecimal: ");
-	scanf("%s", &hexadecimal);	
+	scanf("%s", hexadecimal);
+    while (getchar() != '\n');
+	
 	
 	decimal = hexadecimalDec(hexadecimal);
 	
-	if(decimal != NULL){
+	if(decimal != -1){
 		printf("\nDecimal: %d", decimal);
 	}
 	
@@ -186,11 +190,13 @@ void opcao6(){ //Hexadecimal para decimal
 	int decimal;
 
 	printf("Digite um número hexadecimal: ");
-	scanf("%s", &hexadecimal);	
+	scanf("%s", hexadecimal);	
+    while (getchar() != '\n');
+
 	
 	decimal = hexadecimalDec(hexadecimal);
 
-	if(decimal != NULL){
+	if(decimal != -1){
 		decimalBin(decimal);
 	}
 	
@@ -244,6 +250,7 @@ int binarioDec(char num[]){
 
 	if(errou == true){
 		printf("\nNúmero binário é composto de 0 e 1!\nTente novamente!");
+        return -1;
 	}else{	
 		for(i = qtd - 1; i >= 0; i--){	
 			binario[i] = pow(2, j);
@@ -333,7 +340,7 @@ int hexadecimalDec(char hexadecimal[]){
 			resp = 15 * (pow(16, qtd - 1 - i));
 			decimal += resp;		
 			
-		}else if(hexadecimal[i] > 47 and hexadecimal[i] < 58){
+		}else if(hexadecimal[i] > 47 && hexadecimal[i] < 58){
 			numero = hexadecimal[i] - 48;
 			resp = numero * pow(16, qtd - 1 - i);
 			decimal += resp;
@@ -344,7 +351,7 @@ int hexadecimalDec(char hexadecimal[]){
 	
 	if(errou){
 		printf("\nDigite números de 1 a 9 e letras de A até F!\nTente novamente!!");
-		decimal = NULL;
+		decimal = -1;
 	}else{
 		printf("\nHexadecimal: %s", hexadecimal);
 	}
